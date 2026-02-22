@@ -1,11 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DisparoPelota : MonoBehaviour
+public class DisparoPelotaEscena2 : MonoBehaviour
 {
     public Transform spawner;
-    public Rigidbody blueBallPrefab;
-    public Rigidbody redBallPrefab;
+    public Rigidbody pelotaPrefab;   
     public float fuerzaDisparo = 15f;
 
     void Update()
@@ -15,10 +14,11 @@ public class DisparoPelota : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (GameManager.Instance == null) return;
-            if (!GameManager.Instance.ConsumirRestante()) return;
 
-            Rigidbody prefabElegido = (Random.value < 0.5f) ? blueBallPrefab : redBallPrefab;
-            Rigidbody nuevaPelota = Instantiate(prefabElegido, spawner.position, spawner.rotation);
+           
+            if (!GameManager.Instance.ConsumirTotal()) return;
+
+            Rigidbody nuevaPelota = Instantiate(pelotaPrefab, spawner.position, spawner.rotation);
             nuevaPelota.AddForce(spawner.forward * fuerzaDisparo, ForceMode.Impulse);
         }
     }

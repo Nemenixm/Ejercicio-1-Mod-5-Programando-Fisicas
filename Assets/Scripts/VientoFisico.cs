@@ -6,14 +6,14 @@ public class VientoFisico : MonoBehaviour
 
     public float fuerzaMin = 1f;
     public float fuerzaMax = 50f;
-    public float velocidadCambio = 1f; // qué tan rápido oscila
+    public float velocidadCambio = 1f; 
 
     float fuerzaActual;
 
     [System.Obsolete]
     void FixedUpdate()
     {
-        // Oscilación automática entre 1 y 50
+        
         fuerzaActual = fuerzaMin + Mathf.PingPong(Time.time * velocidadCambio, fuerzaMax - fuerzaMin);
 
         foreach (var rb in FindObjectsOfType<Rigidbody>())
